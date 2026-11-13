@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luis Fernando Gonzales Ugarte — Cybersecurity Analyst</title>
+<meta name="description" content="Portfolio of Luis Fernando Gonzales Ugarte, N1 Security Analyst at Deloitte Madrid, developing towards Threat Hunting, CTI and digital investigations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root{--bg:#080B10;--navy:#0D1420;--cy:#00E5FF;--bl:#176BFF;--fg:#F4F7FA;--mut:#8A96A8;--line:rgba(255,255,255,.09);--card:rgba(13,20,32,.82);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Space Grotesk",Inter,system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+#bg{position:fixed;inset:0;z-index:0;width:100%;height:100%}
+main,footer,nav{position:relative;z-index:2}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:14px 5vw;background:rgba(8,11,16,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:5}
+nav b{font:600 15px "Space Grotesk",sans-serif;letter-spacing:.04em}
+nav div{display:flex;gap:22px;font-size:14px;color:var(--mut)}
+nav a{text-decoration:none}nav a:hover{color:var(--cy)}
+@media(max-width:760px){nav div{display:none}}
+section{padding:110px 5vw 40px;max-width:1180px;margin:0 auto}
+.eyebrow{font:500 12px "Space Grotesk",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--cy);margin-bottom:14px}
+h2{font-size:clamp(30px,5vw,52px);margin-bottom:18px}
+.lead{color:var(--mut);max-width:680px;margin:0 0 36px}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px}
+.hero h1{font-size:clamp(38px,8vw,92px);letter-spacing:-.025em;max-width:900px}
+.hero .role{font:500 clamp(14px,2vw,19px) "Space Grotesk",sans-serif;color:var(--cy);margin:22px 0 14px}
+.hero p{max-width:620px;color:#b8c2d0}
+.status{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:13px;color:var(--mut);margin-bottom:26px;width:fit-content;background:var(--card)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:p 2s infinite}
+@keyframes p{50%{opacity:.35}}
+.btn{display:inline-block;padding:13px 26px;border-radius:8px;font-weight:500;text-decoration:none;border:1px solid var(--cy);color:var(--cy);margin:26px 12px 0 0;transition:.2s}
+.btn:hover,.btn.fill{background:var(--cy);color:#00131a}
+.scroll{position:absolute;bottom:26px;left:5vw;font-size:12px;letter-spacing:.2em;color:var(--mut);text-transform:uppercase}
+.scroll::after{content:"";display:block;width:1px;height:38px;background:linear-gradient(var(--cy),transparent);margin-top:8px;animation:p 2s infinite}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;backdrop-filter:blur(6px);transition:.25s}
+.card:hover{border-color:rgba(0,229,255,.45);transform:translateY(-3px)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+/* investigation */
+.sim{display:grid;grid-template-columns:230px 1fr;gap:18px}
+@media(max-width:820px){.sim{grid-template-columns:1fr}}
+.steps{display:flex;flex-direction:column;gap:8px}
+@media(max-width:820px){.steps{flex-direction:row;overflow-x:auto;padding-bottom:6px}}
+.steps button{all:unset;cursor:pointer;padding:11px 14px;border:1px solid var(--line);border-radius:9px;font-size:14px;color:var(--mut);background:var(--card);white-space:nowrap}
+.steps button.on{color:var(--fg);border-color:var(--cy);box-shadow:inset 3px 0 0 var(--cy)}
+.steps button:focus-visible,.btn:focus-visible,a:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+.panel{min-height:330px;font-size:15px}
+.tag{display:inline-block;font:500 11px "Space Grotesk",sans-serif;letter-spacing:.12em;border:1px solid var(--bl);color:#7fb0ff;padding:3px 9px;border-radius:99px;margin-bottom:14px}
+.mono,pre{font:13px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:#05080c;border:1px solid var(--line);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0;color:#bfe9f2}
+.tree{margin:10px 0;color:#bfe9f2}.tree div{padding-left:var(--d)}
+.warn{color:#ff6b7a}
+table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+.bar{height:3px;background:var(--line);border-radius:3px;margin-top:16px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--bl),var(--cy));transition:width .5s}
+/* timeline */
+.tl{border-left:1px solid var(--line);margin-left:6px;padding-left:28px;display:flex;flex-direction:column;gap:26px}
+.tl .card{position:relative}
+.tl .card::before{content:"";position:absolute;left:-36px;top:30px;width:15px;height:15px;border-radius:50%;background:var(--bg);border:2px solid var(--cy)}
+.when{font-size:13px;color:var(--cy);margin-bottom:6px}
+.card h3{font-size:21px;margin-bottom:4px}.sub{color:var(--mut);font-size:14px;margin-bottom:12px}
+.card p{margin:0 0 10px;color:#c3ccd8}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
+.sk b{display:block;font:600 17px "Space Grotesk",sans-serif}.sk span{font-size:13px;color:var(--mut)}
+.sk.hi{border-color:rgba(0,229,255,.3)}.sk.hi span{color:var(--cy)}
+h4{font:500 13px "Space Grotesk",sans-serif;letter-spacing:.15em;text-transform:uppercase;color:var(--mut);margin:34px 0 14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{border:1px solid var(--line);padding:9px 16px;border-radius:99px;font-size:14px;background:var(--card);transition:.2s}
+.chip:hover{border-color:var(--cy);color:var(--cy);transform:translateY(-2px)}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:30px;counter-reset:f}
+.flow div{counter-increment:f;border-top:2px solid var(--bl);padding-top:12px;color:#c3ccd8;font-size:15px}
+.flow div::before{content:"0" counter(f);display:block;font:600 12px "Space Grotesk";color:var(--cy);margin-bottom:4px}
+.prog{display:inline-block;font-size:12px;border:1px solid #b88a00;color:#f0c24a;border-radius:99px;padding:3px 10px;margin-top:8px}
+.mx{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:6px;margin-top:14px}
+.mx div{padding:12px 8px;font-size:12px;text-align:center;border:1px solid var(--line);border-radius:6px;color:var(--mut);transition:.2s}
+.mx div.u{border-color:rgba(0,229,255,.5);color:var(--cy);background:rgba(0,229,255,.07)}
+.mx div:hover{border-color:var(--cy)}
+footer{padding:70px 5vw 50px;border-top:1px solid var(--line);margin-top:90px;background:rgba(8,11,16,.9)}
+footer .in{max-width:1180px;margin:0 auto}footer h2{font-size:30px}
+footer p{color:var(--mut);margin:6px 0}
+/* intro */
+#intro{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16vh;transition:opacity .9s}
+#intro.out{opacity:0;pointer-events:none}
+#cap{font:500 14px "Space Grotesk",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--cy);text-align:center;min-height:22px}
+#cap.alert{color:#ff6b7a}
+#skip{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:5vw;background:none;border:1px solid var(--line);color:var(--mut);padding:8px 16px;border-radius:99px;cursor:pointer;font:inherit;font-size:13px}
+#skip:hover{color:var(--cy);border-color:var(--cy)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="intro" role="status"><button id="skip">Skip intro</button><div id="cap">Initialising</div></div>
+
+<nav><b>LFGU</b><div><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#learning">Learning</a><a href="#contact">Contact</a></div></nav>
+
+<main>
+<section class="hero" id="top">
+  <div class="status"><span class="dot"></span>N1 Security Analyst · Deloitte · Madrid</div>
+  <h1>Luis Fernando Gonzales Ugarte</h1>
+  <div class="role">Cybersecurity Analyst | Security Operations | Threat Hunting Enthusiast</div>
+  <p>Focused on security investigations, threat detection and understanding the behaviour behind security alerts. Continuously developing my technical skills and investigative mindset.</p>
+  <div><a class="btn fill" href="#contact">Contact</a></div>
+  <div class="scroll">Scroll</div>
+</section>
+
+<section id="experience">
+  <div class="eyebrow">Experience</div><h2>Professional timeline</h2>
+  <div class="tl">
+    <div class="card reveal"><div class="when">May 2026 – Present · Madrid</div><h3>N1 Security Analyst</h3><div class="sub">Deloitte</div>
+      <p>After completing my internship, we decided to move to N1 to gain a broader understanding of all the teams and their responsibilities. This allowed me to strengthen my technical foundations, gain a deeper understanding of N1 operations, and apply the knowledge I had previously acquired in N2.</p>
+      <p>Once in N1, I joined the semi-dedicated Knauf team, where I gained experience in managing and investigating security alerts using Microsoft Defender and Splunk. This is where my interest in security investigations really began to grow. Since then, I have continued developing my investigative skills through daily learning and hands-on experience.</p>
+      <p>I have become increasingly interested in going beyond Defender alerts by using Advanced Hunting to investigate processes, correlate information, identify and rule out evidence, and, when necessary, work with virtual machines to support deeper investigations.</p></div>
+    <div class="card reveal"><div class="when">Internship · February 2026 – May 2026 · Madrid</div><h3>N2 Security Analyst – Operations</h3><div class="sub">Deloitte</div>
+      <p>After attending the Open Days, I became interested in the role and was selected to join the N2 Operations team as an intern following an interview, where I gained valuable insights into the team’s work.</p>
+      <p>During my time in Operations, I gained hands-on experience with several technologies, particularly QRadar, Splunk, as well as Jira. I also learned how the Operations team works with different clients and manages escalations from N1.</p></div>
+    <div class="card reveal"><div class="when">November 2024 – November 2025 · Madrid</div><h3>Customer Service Representative &amp; Checkout Coordinator</h3><div class="sub">Carrefour Parla</div>
+      <p>While completing my Higher Vocational Training in Multiplatform Application Development (DAM) and paying for my studies, I worked for one year as a Checkout Supervisor at Carrefour Parla, coordinating staff, working as part of a team, and handling everyday operational issues and customer-related problems.</p></div>
+    <div class="card reveal"><div class="when">Internship · April 2025 – May 2025</div><h3>Software Developer — Invoice and Business Process Automation</h3><div class="sub">Nature Print</div>
+      <p>This is where my first experience in the IT industry began. During my internship at a small local company, I worked on automating contact processes, improving the website, and automating invoicing, helping save time and reduce manual work.</p></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="eyebrow">Technical skills</div><h2>Tools &amp; technologies</h2>
+  <p class="lead">Qualitative labels only, no percentages. Highlighted cards are the most relevant to my cybersecurity direction.</p>
+  <h4>Cybersecurity</h4>
+  <div class="grid" id="skSec"></div>
+  <h4>Programming and development</h4>
+  <div class="grid" id="skDev"></div>
+</section>
+
+<section id="mindset">
+  <div class="eyebrow">Competencies</div><h2>Investigator’s Mindset</h2>
+  <div class="chips reveal" id="chips"></div>
+  <div class="flow reveal">
+    <div>Question the alert instead of accepting it at face value.</div>
+    <div>Validate the evidence before drawing conclusions.</div>
+    <div>Correlate events across data sources.</div>
+    <div>Distinguish legitimate activity from suspicious behaviour.</div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="eyebrow">Projects</div><h2>Selected projects</h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+    <div class="card reveal"><div class="tag">PROJECT 01</div><h3>Functional Casino Application</h3>
+      <p style="margin-top:12px">A programming project developed as part of my application development experience.</p>
+      <div class="chips" style="margin-top:14px"><span class="chip">Functional casino concept</span><span class="chip">Programming logic</span><span class="chip">Interactive user experience</span><span class="chip">Application development</span></div></div>
+    <div class="card reveal"><div class="tag">PROJECT 02 · FINAL DEGREE PROJECT (TFG)</div><h3>IFEDOC: Healthcare Appointment and Patient Monitoring Platform</h3>
+      <p style="margin-top:12px">A healthcare-oriented application designed to manage patient information, medical appointments and clinical records, with attention to the protection of sensitive healthcare data.</p>
+      <div class="chips" style="margin-top:14px"><span class="chip">Patient registration &amp; management</span><span class="chip">Medical appointments</span><span class="chip">Patient medical history</span><span class="chip">Consultation &amp; treatment records</span><span class="chip">Monitoring &amp; security incident awareness</span><span class="chip">Secure access to sensitive information</span></div></div>
+  </div>
+</section>
+
+<section id="learning">
+  <div class="eyebrow">Professional development</div><h2>Currently Learning</h2>
+  <div class="grid">
+    <div class="card reveal"><h3>MITRE ATT&amp;CK Fundamentals</h3><span class="prog">In Progress</span></div>
+    <div class="card reveal"><h3>TTP-Based Threat Hunting</h3><span class="prog">In Progress</span></div>
+    <div class="card reveal"><h3>INE Certified Threat Hunting Professional (eCTHP)</h3><span class="prog">In Progress</span></div>
+  </div>
+  <h4>ATT&amp;CK-inspired view of adversary tactics</h4>
+  <div class="mx reveal" id="mx"></div>
+  <p class="sub" style="margin-top:12px">These are the tactics of the MITRE ATT&CK framework I am studying. This shows what I am learning, not a completed qualification.</p>
+</section>
+
+<section id="education">
+  <div class="eyebrow">Education &amp; languages</div><h2>Background</h2>
+  <div class="grid">
+    <div class="card reveal"><div class="when">2024–2026</div><h3>Higher Vocational Training in Multiplatform Application Development (DAM)</h3><div class="sub">CES Juan Pablo II, Madrid</div></div>
+    <div class="card reveal"><div class="when">2023–2024</div><h3>Social Sciences Baccalaureate</h3><div class="sub">IES Torrente Ballester, Madrid</div></div>
+    <div class="card reveal"><h3>Languages</h3><p style="margin-top:10px">Spanish — Native<br>English — B2</p></div>
+  </div>
+</section>
+</main>
+
+<footer id="contact"><div class="in">
+  <h2>Luis Fernando Gonzales Ugarte</h2>
+  <p>Cybersecurity Analyst | Madrid, Spain</p>
+  <p>Email: <a href="mailto:lgonzalesugarte@deloitte.es">lgonzalesugarte@deloitte.es</a></p>
+  <p>Phone: <a href="tel:+34641468716">+34 641468716</a></p>
+  <a class="btn fill" href="mailto:lgonzalesugarte@deloitte.es">Get in touch</a>
+</div></footer>
+
+<script>
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile=innerWidth<760;
+/* ---------- content ---------- */
+const sk=(el,a)=>{document.getElementById(el).innerHTML=a.map(([n,l,h])=>`<div class="card sk reveal ${h?'hi':''}"><b>${n}</b><span>${l}</span></div>`).join('')};
+sk('skSec',[["Microsoft Defender","Professional experience",1],["Splunk","Professional experience",1],["IBM QRadar","Hands-on experience",1],["KQL / Advanced Hunting","Currently developing",1],["Jira","Hands-on experience"],["PowerShell","Working knowledge"]]);
+sk('skDev',[["Java","Working knowledge"],["JavaScript","Working knowledge"],["TypeScript","Working knowledge"],["Python","Working knowledge"],["SQL","Working knowledge"]]);
+document.getElementById('chips').innerHTML=["Critical thinking","Analytical reasoning","Hypothesis-driven investigation","Evidence correlation","Pattern recognition","Root cause analysis","Attention to detail","Incident investigation","Effective communication","Teamwork","Stress management","Working under pressure","Continuous learning"].map(t=>`<span class="chip">${t}</span>`).join('');
+const used=[];
+document.getElementById('mx').innerHTML=["Reconnaissance","Initial Access","Execution","Persistence","Privilege Escalation","Defense Evasion","Credential Access","Discovery","Lateral Movement","Collection","Command and Control","Exfiltration","Impact"].map(t=>`<div class="${used.includes(t)?'u':''}">${t}</div>`).join('');
+/* reveal */
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+/* ---------- 3D background + intro ---------- */
+const intro=document.getElementById('intro'),cap=document.getElementById('cap');
+let introDone=false;
+function endIntro(){if(introDone)return;introDone=true;intro.classList.add('out');setTimeout(()=>intro.remove(),950)}
+document.getElementById('skip').onclick=endIntro;
+try{
+  if(!window.THREE)throw 0;
+  const cv=document.getElementById('bg');
+  const r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:!mobile});
+  r.setPixelRatio(Math.min(devicePixelRatio,mobile?1.5:2));
+  const sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(55,1,.1,100);cam.position.z=mobile?15:12;
+  const N=mobile?38:75,P=new Float32Array(N*3),C=new Float32Array(N*3);
+  for(let i=0;i<N;i++){P[i*3]=(Math.random()-.5)*16;P[i*3+1]=(Math.random()-.5)*10;P[i*3+2]=(Math.random()-.5)*10}
+  const g=new THREE.Group();sc.add(g);
+  const pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(P,3));pg.setAttribute('color',new THREE.BufferAttribute(C,3));
+  g.add(new THREE.Points(pg,new THREE.PointsMaterial({size:.16,vertexColors:true,transparent:true,opacity:.95})));
+  const L=[];for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){const dx=P[i*3]-P[j*3],dy=P[i*3+1]-P[j*3+1],dz=P[i*3+2]-P[j*3+2];if(dx*dx+dy*dy+dz*dz<(mobile?9:7))L.push(P[i*3],P[i*3+1],P[i*3+2],P[j*3],P[j*3+1],P[j*3+2])}
+  const lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(L,3));
+  const lm=new THREE.LineBasicMaterial({color:0x176BFF,transparent:true,opacity:0});g.add(new THREE.LineSegments(lg,lm));
+  const sus=new THREE.Mesh(new THREE.SphereGeometry(.2,16,16),new THREE.MeshBasicMaterial({color:0xff4d5e,transparent:true,opacity:0}));
+  sus.position.set(P[0],P[1],P[2]);g.add(sus);
+  const t0=performance.now();let mx=0,my=0;
+  addEventListener('mousemove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+  function size(){r.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+  addEventListener('resize',size);size();
+  const caps=[[0,"Mapping endpoints"],[1.6,"Scanning network"],[3.2,"Anomalous connection detected",1],[4.3,"Isolating and analysing behaviour"],[5.4,"Intelligence interface ready"]];
+  let ci=-1,vis=true;
+  document.addEventListener('visibilitychange',()=>vis=!document.hidden);
+  function loop(){requestAnimationFrame(loop);if(!vis)return;
+    const t=(performance.now()-t0)/1000;
+    const form=Math.min(t/1.6,1);lm.opacity=(introDone?.16:.1+.25*form);
+    const sx=((t*3)%24)-12;
+    for(let i=0;i<N;i++){const d=Math.abs(P[i*3]-sx),b=Math.max(0,1-d/2.2),k=Math.min(1,form);C[i*3]=(.3+.7*b*0)*k;C[i*3+1]=(.55+.45*b)*k;C[i*3+2]=(.8+.2*b)*k}
+    pg.attributes.color.needsUpdate=true;
+    sus.material.opacity=t>3.2?.5+.5*Math.sin(t*8):0;
+    if(!RM){g.rotation.y=t*.05+mx*.4;g.rotation.x=my*.25}
+    if(!introDone){for(let k=caps.length-1;k>=0;k--)if(t>=caps[k][0]){if(ci!==k){ci=k;cap.textContent=caps[k][1];cap.className=caps[k][2]?'alert':''}break}
+      if(t>6.4)endIntro()}
+    else cv.style.opacity=.55;
+    r.render(sc,cam)}
+  loop();
+}catch(e){endIntro()}
+if(RM)endIntro();
+</script>
+</body>
+</html>
